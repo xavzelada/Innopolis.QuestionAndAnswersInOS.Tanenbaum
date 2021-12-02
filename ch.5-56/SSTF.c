@@ -31,7 +31,7 @@ void SSTF(int request[], int init_request, int n) {
         distance += diff[index][0];
         init_request = request[index];
     }
-    printf("Distance = %d ", distance);
+    printf("Distance = %d\n", distance);
 }
 
 int main() {

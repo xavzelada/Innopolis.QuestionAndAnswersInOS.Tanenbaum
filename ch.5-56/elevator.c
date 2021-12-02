@@ -55,7 +55,7 @@ int main() {
     qsort(requests, size, sizeof(int), cmpfunc);
     int index = iterativeBinarySearch(requests,0,6,11);
 
-    printf("Distance =  %d", elevator(requests, size, index));
+    printf("Distance =  %d\n", elevator(requests, size, index));
     return 0;
 }
 

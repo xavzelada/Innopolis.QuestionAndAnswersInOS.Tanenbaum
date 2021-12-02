@@ -61,7 +61,7 @@ int main() {
     while (true) {
 
         char*commandLine = getCommand();
-        if(strcmp (commandLine, "end") == 0) break;
+        if(strcmp (commandLine, "ctrl + C") == 0) break;
         char type = commandLine[0];
 
         // before process provided data we assume that time wasn't changed

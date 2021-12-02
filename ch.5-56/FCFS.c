@@ -11,8 +11,8 @@ int FCFS(int requests[], int size){
 
 int main()
 {
-    int requests[] = {1, 7 , 15, 2};
-    int size  = 4;
-    printf("Distance =  %d", FCFS(requests,size));
+    int requests[] = {11, 1, 36, 16, 34, 9, 12};
+    int size  = 7;
+    printf("Distance =  %d\n", FCFS(requests,size));
     return 0;
 }
