@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+//getting the index of the minimum distance 
 int minimum_distance_index(int diff[][2], int n) {
     int index = -1;
     int minimum = (int) 1e9;
@@ -15,6 +15,8 @@ int minimum_distance_index(int diff[][2], int n) {
     return index;
 }
 
+
+//the SSTF algorithm
 void SSTF(int request[], int init_request, int n) {
     if (!n) return;
     int diff[n][2], distance = 0;

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <dirent.h>
 
+
+// print the files in a directory
 void printdir(char *path) {
     DIR *dir;
     struct dirent *entry;

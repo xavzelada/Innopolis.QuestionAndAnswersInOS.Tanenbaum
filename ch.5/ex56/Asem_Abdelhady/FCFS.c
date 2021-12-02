@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//first comes first served algorithm
 int FCFS(int requests[], int size){
     int distance  = 0;
     for(int i = 0; i < size - 1; i++){

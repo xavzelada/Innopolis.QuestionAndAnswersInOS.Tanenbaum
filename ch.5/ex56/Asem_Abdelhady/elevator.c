@@ -3,10 +3,12 @@
 #include <stdbool.h>
 
 
+//the comparison function to be used inside the quick sort.
 int cmpfunc (const void * a, const void * b) {
     return ( *(int*)a - *(int*)b );
 }
 
+//Using binary search to get the index of the starting request after sorting.
 int iterativeBinarySearch(int array[], int start_index, int end_index, int element){
     while (start_index <= end_index){
         int middle = start_index + (end_index- start_index )/2;
@@ -20,6 +22,7 @@ int iterativeBinarySearch(int array[], int start_index, int end_index, int eleme
     return -1;
 }
 
+//The elevator algorithm for the requestes
 int elevator(int requests[], int size,int init_index) {
     int distance = 0;
     bool up = true;
@@ -52,6 +55,7 @@ int elevator(int requests[], int size,int init_index) {
 int main() {
     int requests[] = {11, 1, 36, 16, 34, 9, 12};
     int size = 7;
+    //sorting the requestes using quick sort.
     qsort(requests, size, sizeof(int), cmpfunc);
     int index = iterativeBinarySearch(requests,0,6,11);
 

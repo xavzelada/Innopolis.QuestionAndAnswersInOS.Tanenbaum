@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+//reading a file with some butter size
 void read_file(char *filename, const int BUF_SIZE) {
     char source[BUF_SIZE + 1];
     FILE *fp = fopen(filename, "rb");
@@ -14,6 +16,7 @@ void read_file(char *filename, const int BUF_SIZE) {
 }
 
 
+//writting into a file with some buffer size
 void write_file(char *filename, const int BUF_SIZE) {
     FILE *fp = fopen(filename, "w");
 
@@ -27,16 +30,19 @@ void write_file(char *filename, const int BUF_SIZE) {
     fclose(fp);
 }
 
+
 int main() {
     for (int buf_size = 64; buf_size < 4 * 1024; buf_size += 1024) {
         clock_t t;
         t = clock();
-        read_file("../file.txt", buf_size);
+        //reading the file inside same directory as the exutable which size is 2GB or more
+        read_file("./file.txt", buf_size);
         t = clock() - t;
         double read_time = ((double) t) / CLOCKS_PER_SEC;
 
         t = clock();
-        write_file("../file2.txt", buf_size);
+        //writing to a file inside same directory as the exutable which size is 2GB or more
+        write_file("./file2.txt", buf_size);
         t = clock() - t;
         double write_time = ((double) t) / CLOCKS_PER_SEC;
 

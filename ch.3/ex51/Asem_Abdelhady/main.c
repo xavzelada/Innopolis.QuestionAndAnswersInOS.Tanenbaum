@@ -3,14 +3,14 @@
 
 #define member_size(type, member) sizeof(((type *)0)->member)
 
-typedef struct page
+typedef struct frame
 {
     int id;
     unsigned int counter;
-} page_t;
+} page_frame;
 
-// Looks for a page with the given id in the given page table
-page_t* find_page(page_t *pages, int id, size_t pages_count)
+// Looks for a frame with the given id in the given page table
+page_frame* find_frame(page_frame *pages, int id, size_t pages_count)
 {
     for(int i=0; i<pages_count; i++)
     {
@@ -22,7 +22,7 @@ page_t* find_page(page_t *pages, int id, size_t pages_count)
 
 // Finds and returns the address of the first available page frames
 // That is either an empty frame (id == 0) or the one with the lowest counter
-page_t* available_page(page_t *pages, size_t pages_count)
+page_frame* can_be_used_frame(page_frame *pages, size_t pages_count)
 {
     unsigned int lowest_counter = 1<<31;
     int lowest_id = 0;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 
     int page_count = strtol(argv[1], NULL, 10);
 
-    page_t *pages = calloc(page_count, sizeof(page_t));		// page table
+    page_frame *pages = calloc(page_count, sizeof(page_frame));		// page table
     if(pages == NULL)
     {
         printf("Error allocating memory for page table!\n");
@@ -71,14 +71,14 @@ int main(int argc, char *argv[])
     while(fscanf(input, "%d", &page_id) == 1)
     {
         // Do we already have this page in the table?
-        page_t *page = find_page(pages, page_id, page_count);
+        page_frame *page = find_frame(pages, page_id, page_count);
         if(page != NULL)	// Yes we do!
         {
         }
         else
         {
             faults++;
-            page = available_page(pages, page_count);	// find a place for that page
+            page = can_be_used_frame(pages, page_count);	// find a place for that page
 
             // Claim it for this page
             page->id = page_id;
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
             pages[i].counter >>= 1;
 
         // Then add the R bit of the new page
-        page->counter |= 1 << (member_size(page_t, counter)*8 - 1);
+        page->counter |= 1 << (member_size(page_frame, counter) * 8 - 1);
     }
 
     int page_faults_per_thousand = (faults*1000)/page_count;

@@ -6,7 +6,7 @@
 
 #define true 1
 #define false 0
-
+//returning the command
 char * getCommand(void) {
     char * line = malloc(100), * linep = line;
     size_t lenmax = 100, len = lenmax;
