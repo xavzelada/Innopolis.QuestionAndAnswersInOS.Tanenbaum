@@ -4,7 +4,7 @@
 
 #define true 1
 #define false 0
-#define disc_size 500 //we need to know it for CSCAN algorithm
+#define disc_size 200
 
 
 //calculate the distance between two points
@@ -77,7 +77,7 @@ int nextIndexCSCAN(int requests[], int usedCSCAN[], int size, int cInd){
 	for (int i = 0; i < size; i++){
 		int tempD = distance(requests[cInd], requests[i]);
 
-		if (!usedCSCAN[i] && requests[cInd] < requests[i] && minD > tempD){
+		if (!usedCSCAN[i] && requests[cInd] <= requests[i] && minD > tempD){
 			next = i;
 			minD = tempD;
 		}
@@ -98,7 +98,7 @@ int maxRequestCSCAN(int requests[], int usedCSCAN[], int size, int cInd){
 	}
 
 	for (int i = 0; i < size; i++){
-		if (!usedCSCAN[i] && requests[next] > requests[i])
+		if (!usedCSCAN[i] && requests[next] >= requests[i])
 			next = i;
 	}
 
@@ -146,20 +146,29 @@ int CSCAN(int requests[], int size){
 
 int main()
 {
-	printf("Write the total amount of requests and then each request as integer number\n");
-	printf("Assume that first in the list of requests - is starting position of Read/Write head\n");
+	FILE *inp;
+    inp = fopen("input.txt", "r");
 
-	int size;
-   	scanf("%d", &size);
+	// printf("Write the total amount of requests and then each request as integer number\n");
+	// printf("Assume that first in the list of requests - is starting position of Read/Write head\n");
+
+	int size = 0;
+   	// scanf("%d", &size);
+   	fscanf(inp, "%d", &size);
 	int requests[size];
 
+
     for (int i = 0; i < size; i++){
-    	scanf("%d", &requests[i]);
+    	// scanf("%d", &requests[i]);
+    	fscanf(inp, "%d", &requests[i]);
     }
+
     
     printf("FCFS  - Distance =  %d\n", FCFS(requests, size));
     printf("SSTF  - Distance =  %d\n", SSTF(requests, size));
     printf("CSCAN - Distance =  %d\n", CSCAN(requests, size));
+
+    fclose(inp);
 
     return 0;
 }
