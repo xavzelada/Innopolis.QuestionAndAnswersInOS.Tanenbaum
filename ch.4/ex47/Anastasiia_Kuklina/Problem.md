@@ -5,7 +5,7 @@ sizes. Analyze the results and report your findings: does buffer size make a dif
 ## Solution description
 
 #### Files: 
-* `lorem.txt` - Input Text file, size: 626,9 MiB (657 309 852)
+* `lorem.txt` - Input Text file, size: 626,9 MiB (657 309 852) (can not be added because of too big size)
 * `output.txt` - Output text file
 * `solution.c` - C programm to measure the impact of application-level buffer sizes on read time
 
