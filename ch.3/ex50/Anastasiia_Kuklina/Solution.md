@@ -58,3 +58,9 @@ Description was taken from previos year solution
 Link to the solution:
 https://github.com/thisisbeka/OS.Tanenbaum-Internship/blob/master/code/ch3-p50.pdf
 ```
+
+    Made by Anastasiia Kuklina 
+    Innopolis university
+    Group BS20-04
+    For Operating Systems course
+
