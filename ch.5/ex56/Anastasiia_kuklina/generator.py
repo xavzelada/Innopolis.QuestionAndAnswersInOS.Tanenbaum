@@ -1,6 +1,6 @@
 import random
 
-n = 100
+n = 1000
 disc_size = 200
 
 with open("input.txt", "w") as f:
